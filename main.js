@@ -27,8 +27,10 @@ const nameInput = document.getElementById('nameInput');
 const quoteBtn = document.getElementById('quoteBtn');
 const quoteText = document.getElementById('quoteText');
 const bubbleText = document.getElementById('bubbleText');
+const sleepyStudent = document.querySelector('.student-sleepy');
 
 let messageQueue = [];
+let sleepyTimeoutId;
 
 function makeVocative(rawName) {
     const name = rawName.trim();
@@ -79,10 +81,23 @@ function updateText(element, text) {
     }, 180);
 }
 
+function wakeSleepyStudent() {
+    if (!sleepyStudent) {
+        return;
+    }
+
+    sleepyStudent.classList.add('awake');
+    clearTimeout(sleepyTimeoutId);
+    sleepyTimeoutId = setTimeout(() => {
+        sleepyStudent.classList.remove('awake');
+    }, 2000);
+}
+
 function getRandomQuote() {
     const selectedMessage = pickMessage();
     updateText(quoteText, selectedMessage);
     updateText(bubbleText, selectedMessage);
+    wakeSleepyStudent();
 }
 
 quoteBtn.addEventListener('click', getRandomQuote);
