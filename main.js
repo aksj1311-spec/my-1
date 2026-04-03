@@ -26,6 +26,8 @@ const quoteBtn = document.getElementById('quoteBtn');
 const quoteText = document.getElementById('quoteText');
 const bubbleText = document.getElementById('bubbleText');
 
+let messageQueue = [];
+
 function makeVocative(rawName) {
     const name = rawName.trim();
     if (!name) {
@@ -45,12 +47,23 @@ function makeVocative(rawName) {
     return hasBatchim ? `${name}아` : `${name}야`;
 }
 
+function refillQueue() {
+    messageQueue = [...messages];
+    for (let i = messageQueue.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [messageQueue[i], messageQueue[j]] = [messageQueue[j], messageQueue[i]];
+    }
+}
+
 function pickMessage() {
     const name = nameInput.value.trim() || 'ㅇㅇ';
     const vocative = makeVocative(nameInput.value);
-    const randomIndex = Math.floor(Math.random() * messages.length);
 
-    return messages[randomIndex]
+    if (messageQueue.length === 0) {
+        refillQueue();
+    }
+
+    return messageQueue.pop()
         .replace(/{name}/g, name)
         .replace(/{vocative}/g, vocative);
 }
