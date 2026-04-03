@@ -162,7 +162,7 @@ body {
 .veil {
     position: absolute;
     inset: 0;
-    background: #1f1f29;
+    background: #6f737b;
     clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
 }
 
@@ -228,7 +228,7 @@ body {
     left: 26px;
     width: 80px;
     height: 68px;
-    background: #24242d;
+    background: #8b9099;
     clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%);
 }
 
@@ -257,7 +257,7 @@ body {
     left: -4px;
     width: 88px;
     height: 12px;
-    background: #1b1b24;
+    background: #7c828b;
 }
 
 .feet {
