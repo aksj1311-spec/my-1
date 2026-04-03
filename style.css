@@ -1,3 +1,17 @@
+:root {
+    --ink: #2d241b;
+    --paper: #fffaf0;
+    --paper-dark: #f4e4c1;
+    --sky-top: #bfe7ff;
+    --sky-bottom: #f8fdff;
+    --grass-1: #6ea84f;
+    --grass-2: #8dcf63;
+    --grass-3: #4f7c35;
+    --accent: #f28c6b;
+    --accent-dark: #cf6b4a;
+    --shadow: #b7a27d;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,137 +19,392 @@
 }
 
 body {
-    background-color: #f0f0f0; /* 그레이 톤 배경 */
-    color: #333333;
-    font-family: 'DungGeunMo', monospace;
+    min-height: 100vh;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+    color: var(--ink);
+    font-family: 'DungGeunMo', monospace;
     line-height: 1.6;
+    background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.9), transparent 30%),
+        linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 52%, #c8ec9b 52%, #87bf5c 100%);
 }
 
 .container {
-    max-width: 500px;
     width: 100%;
+    max-width: 560px;
+    padding: 28px 20px 24px;
     text-align: center;
-    background: #ffffff;
-    padding: 40px 20px;
-    border: 4px solid #333333;
-    box-shadow: 
-        8px 8px 0px 0px #b3b3b3,
-        -8px -8px 0px 0px #ffffff;
-    position: relative;
+    border: 4px solid var(--ink);
+    background: var(--paper);
+    box-shadow: 8px 8px 0 var(--shadow);
 }
 
-/* 픽셀 텍스트 스타일 */
 .pixel-text {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
+    font-size: 1.85rem;
     letter-spacing: 1px;
+    margin-bottom: 8px;
 }
 
 .subtitle {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 30px;
+    margin-bottom: 22px;
+    font-size: 0.95rem;
+    color: #69553f;
 }
 
-/* 픽셀 박스 스타일 (공통) */
 .pixel-box {
-    border: 4px solid #333333;
-    background: #f9f9f9;
-    padding: 20px;
-    margin-bottom: 20px;
     position: relative;
+    margin-bottom: 18px;
+    padding: 16px;
     text-align: left;
+    border: 4px solid var(--ink);
+    background: rgba(255, 250, 240, 0.92);
+}
+
+.pixel-border {
+    box-shadow:
+        0 -4px 0 0 var(--ink),
+        0 4px 0 0 var(--ink),
+        -4px 0 0 0 var(--ink),
+        4px 0 0 0 var(--ink);
+}
+
+.scene {
+    overflow: hidden;
+    padding: 14px 14px 18px;
+    background: linear-gradient(180deg, #d7f0ff 0%, #f8fdff 48%, #98d56d 48%, #6eaa48 100%);
+}
+
+.speech-bubble {
+    position: relative;
+    margin: 4px auto 18px;
+    max-width: 100%;
+    min-height: 82px;
+    padding: 14px 16px;
+    text-align: center;
+    background: #fffef8;
+}
+
+.speech-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 16px solid var(--ink);
+    transform: translateX(-50%);
+}
+
+.speech-bubble::before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 12px solid #fffef8;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+#bubbleText,
+#quoteText {
+    transition: opacity 0.25s ease;
+    word-break: keep-all;
+}
+
+.field {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 220px;
+    padding-top: 8px;
+    background:
+        linear-gradient(180deg, transparent 0 58%, rgba(63, 100, 29, 0.18) 58% 60%, transparent 60% 100%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.08) 0 14px, rgba(0,0,0,0.02) 14px 28px);
+}
+
+.nun-character {
+    position: relative;
+    width: 132px;
+    height: 176px;
+    margin-top: 6px;
+    image-rendering: pixelated;
+    animation: floaty 2s steps(2) infinite;
+}
+
+.halo {
+    position: absolute;
+    top: 2px;
+    left: 34px;
+    width: 64px;
+    height: 14px;
+    border: 4px solid #f3d96a;
+    background: rgba(255, 250, 180, 0.45);
+}
+
+.head {
+    position: absolute;
+    top: 18px;
+    left: 30px;
+    width: 72px;
+    height: 72px;
+}
+
+.veil {
+    position: absolute;
+    inset: 0;
+    background: #1f1f29;
+    clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
+}
+
+.face {
+    position: absolute;
+    top: 12px;
+    left: 13px;
+    width: 46px;
+    height: 48px;
+    background: #f5d8c0;
+    border: 4px solid var(--ink);
+}
+
+.glasses {
+    position: absolute;
+    top: 12px;
+    left: 3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.glasses::after {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 7px;
+    width: 10px;
+    height: 4px;
+    background: var(--ink);
+}
+
+.glasses span {
+    width: 14px;
+    height: 14px;
+    border: 4px solid var(--ink);
+    background: rgba(191, 231, 255, 0.45);
+}
+
+.eyes {
+    position: absolute;
+    top: 19px;
+    left: 10px;
+    width: 26px;
+    height: 4px;
+    background: transparent;
+    box-shadow: 0 0 0 0 var(--ink), 18px 0 0 0 var(--ink);
+}
+
+.mouth {
+    position: absolute;
+    bottom: 8px;
+    left: 14px;
+    width: 12px;
+    height: 4px;
+    background: var(--accent-dark);
+    box-shadow: 4px 0 0 0 var(--accent-dark);
+}
+
+.body {
+    position: absolute;
+    top: 88px;
+    left: 26px;
+    width: 80px;
+    height: 68px;
+    background: #24242d;
+    clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%);
+}
+
+.cross {
+    position: absolute;
+    top: 16px;
+    left: 36px;
+    width: 8px;
+    height: 24px;
+    background: #f2f2f2;
+}
+
+.cross::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: -8px;
+    width: 24px;
+    height: 8px;
+    background: #f2f2f2;
+}
+
+.arms {
+    position: absolute;
+    top: 20px;
+    left: -4px;
+    width: 88px;
+    height: 12px;
+    background: #1b1b24;
+}
+
+.feet {
+    position: absolute;
+    bottom: 10px;
+    left: 36px;
+    width: 60px;
+    height: 12px;
+    background: transparent;
+    box-shadow: 0 0 0 0 #3a2616, 34px 0 0 0 #3a2616;
+}
+
+.flowers {
+    position: absolute;
+    bottom: 6px;
+    width: 100%;
+    height: 42px;
+}
+
+.flowers span {
+    position: absolute;
+    bottom: 0;
+    width: 18px;
+    height: 26px;
+    background: linear-gradient(180deg, #4e8b34 0 58%, #2f5e1c 58% 100%);
+}
+
+.flowers span::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -3px;
+    width: 24px;
+    height: 14px;
+    background: #ff8eb2;
+    box-shadow: 0 0 0 4px #ffd5e3 inset;
+}
+
+.flowers span:nth-child(1) {
+    left: 12%;
+}
+
+.flowers span:nth-child(2) {
+    right: 14%;
+}
+
+.flowers span:nth-child(3) {
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .input-section label {
     display: block;
     margin-bottom: 10px;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
 }
 
 input[type="text"] {
     width: 100%;
-    border: 4px solid #b3b3b3;
-    padding: 10px;
-    font-family: 'DungGeunMo', monospace;
+    padding: 11px 12px;
     font-size: 1rem;
+    font-family: 'DungGeunMo', monospace;
+    color: var(--ink);
+    border: 4px solid #b09a78;
     outline: none;
     background: #fff;
 }
 
 input[type="text"]:focus {
-    border-color: #333333;
+    border-color: var(--accent-dark);
 }
 
-/* 픽셀 버튼 스타일 */
 .pixel-button {
-    background-color: #333333;
-    color: #ffffff;
-    border: none;
-    padding: 15px 30px;
-    font-family: 'DungGeunMo', monospace;
-    font-size: 1.2rem;
-    cursor: pointer;
     width: 100%;
-    margin-bottom: 20px;
-    position: relative;
-    box-shadow: 4px 4px 0px #888888;
-    transition: all 0.1s ease;
-}
-
-.pixel-button:active {
-    box-shadow: 0px 0px 0px #888888;
-    transform: translate(4px, 4px);
+    margin-bottom: 18px;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    color: #fffdf7;
+    background: var(--accent);
+    box-shadow: 4px 4px 0 var(--accent-dark);
+    font-family: 'DungGeunMo', monospace;
+    font-size: 1.1rem;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
 }
 
 .pixel-button:hover {
-    background-color: #444444;
+    background: #ef7d59;
 }
 
-/* 명언 출력 영역 */
+.pixel-button:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+}
+
 .quote-section {
-    min-height: 120px;
+    min-height: 124px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 1.2rem;
-    word-break: keep-all;
-    background: #fff;
-}
-
-#quoteText {
-    transition: opacity 0.3s ease;
+    font-size: 1.12rem;
+    background: #fffef9;
 }
 
 footer {
-    margin-top: 30px;
+    margin-top: 8px;
 }
 
 .pixel-text-small {
-    font-size: 0.8rem;
-    color: #888;
+    font-size: 0.75rem;
+    color: #7d6958;
 }
 
-/* 픽셀 보더 유틸리티 (필요 시) */
-.pixel-border {
-    box-shadow: 
-        0 -4px 0 0 #333,
-        0 4px 0 0 #333,
-        -4px 0 0 0 #333,
-        4px 0 0 0 #333;
+@keyframes floaty {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 30px 15px;
+    body {
+        padding: 12px;
     }
+
+    .container {
+        padding: 22px 14px 18px;
+    }
+
     .pixel-text {
         font-size: 1.5rem;
+    }
+
+    .scene {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .speech-bubble {
+        min-height: 96px;
+        font-size: 0.9rem;
+    }
+
+    .quote-section {
+        font-size: 1rem;
     }
 }
