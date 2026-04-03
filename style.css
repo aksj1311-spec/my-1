@@ -11,6 +11,7 @@
     --cardigan: #8f949d;
     --skin: #f5d8c0;
     --hair: #3a2b23;
+    --shirt: #fff7f4;
 }
 
 * {
@@ -273,130 +274,187 @@ header {
 
 .student {
     position: absolute;
-    bottom: 20px;
-    width: 86px;
-    height: 138px;
+    bottom: 18px;
+    width: 88px;
+    height: 148px;
     z-index: 1;
 }
 
 .student-sleepy {
-    left: 26px;
-    transform: rotate(-4deg);
+    left: 22px;
+    transform: rotate(-3deg);
 }
 
 .student-shy {
-    right: 26px;
-    transform: rotate(3deg);
+    right: 22px;
+    transform: rotate(2deg);
 }
 
 .student-head {
     position: absolute;
     top: 0;
-    left: 19px;
-    width: 48px;
-    height: 46px;
+    left: 16px;
+    width: 56px;
+    height: 58px;
 }
 
 .student-hair {
     position: absolute;
     inset: 0;
     background: var(--hair);
-    border-radius: 8px 8px 4px 4px;
+    border-radius: 14px 14px 8px 8px;
 }
 
-.student-ribbon {
-    position: absolute;
-    top: -6px;
-    left: 10px;
-    width: 28px;
-    height: 12px;
-    background: var(--ribbon);
-}
-
-.student-ribbon::before,
-.student-ribbon::after {
+.student-hair::before,
+.student-hair::after {
     content: "";
     position: absolute;
-    top: 2px;
-    width: 10px;
-    height: 10px;
-    background: var(--ribbon);
+    top: 20px;
+    width: 12px;
+    height: 42px;
+    background: var(--hair);
 }
 
-.student-ribbon::before {
-    left: -8px;
-    clip-path: polygon(100% 0, 0 50%, 100% 100%);
+.student-hair::before {
+    left: -4px;
+    border-radius: 0 0 6px 6px;
 }
 
-.student-ribbon::after {
-    right: -8px;
-    clip-path: polygon(0 0, 100% 50%, 0 100%);
+.student-hair::after {
+    right: -4px;
+    border-radius: 0 0 6px 6px;
 }
 
 .student-face {
     position: absolute;
-    top: 10px;
-    left: 8px;
-    width: 32px;
-    height: 28px;
+    top: 12px;
+    left: 10px;
+    width: 36px;
+    height: 34px;
     background: var(--skin);
     border: 4px solid var(--ink);
+    border-radius: 8px;
 }
 
 .student-face::before,
 .student-face::after {
     content: "";
     position: absolute;
-    top: 10px;
-    width: 6px;
+    top: 11px;
+    width: 4px;
     height: 4px;
     background: var(--ink);
+    border-radius: 50%;
 }
 
 .student-face::before {
-    left: 5px;
+    left: 7px;
 }
 
 .student-face::after {
-    right: 5px;
+    right: 7px;
+}
+
+.student-face .student-mouth {
+    display: none;
+}
+
+.sleepy-face {
+    transform: rotate(8deg);
 }
 
 .sleepy-face::before,
 .sleepy-face::after {
+    top: 12px;
     height: 2px;
+    width: 6px;
+    border-radius: 2px;
 }
 
-.sleepy-face {
-    transform: rotate(10deg);
+.sleepy-face::before {
+    left: 6px;
 }
 
-.sleepy-face .student-mouth {
-    display: none;
+.sleepy-face::after {
+    right: 6px;
 }
 
-.shy-face::before {
-    height: 4px;
-}
-
+.shy-face::before,
 .shy-face::after {
-    height: 4px;
+    top: 11px;
 }
 
-.student-face.sleepy-face + .student-mouth {
-    display: none;
+.shy-face {
+    box-shadow: inset 0 -6px 0 0 rgba(255, 255, 255, 0.1);
 }
 
-.student-face::marker {
+.student-shirt {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    width: 48px;
+    height: 28px;
+    background: var(--shirt);
+    border-radius: 4px 4px 0 0;
+}
+
+.student-shirt::before,
+.student-shirt::after {
     content: "";
+    position: absolute;
+    top: 0;
+    width: 14px;
+    height: 10px;
+    background: #fff;
+}
+
+.student-shirt::before {
+    left: 10px;
+    clip-path: polygon(0 0, 100% 0, 70% 100%, 0 100%);
+}
+
+.student-shirt::after {
+    right: 10px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
+}
+
+.student-chest-ribbon {
+    position: absolute;
+    top: 58px;
+    left: 31px;
+    width: 26px;
+    height: 10px;
+    background: var(--ribbon);
+}
+
+.student-chest-ribbon::before,
+.student-chest-ribbon::after {
+    content: "";
+    position: absolute;
+    top: 1px;
+    width: 11px;
+    height: 11px;
+    background: var(--ribbon);
+}
+
+.student-chest-ribbon::before {
+    left: -8px;
+    clip-path: polygon(100% 0, 0 50%, 100% 100%);
+}
+
+.student-chest-ribbon::after {
+    right: -8px;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
 }
 
 .student-cardigan {
     position: absolute;
-    top: 44px;
-    left: 15px;
-    width: 54px;
-    height: 38px;
+    top: 58px;
+    left: 14px;
+    width: 60px;
+    height: 40px;
     background: var(--cardigan);
+    border-radius: 6px 6px 2px 2px;
 }
 
 .student-cardigan::before,
@@ -405,53 +463,81 @@ header {
     position: absolute;
     top: 8px;
     width: 12px;
-    height: 24px;
-    background: #7d828b;
+    height: 28px;
+    background: #7b8088;
 }
 
 .student-cardigan::before {
-    left: -10px;
+    left: -8px;
 }
 
 .student-cardigan::after {
-    right: -10px;
+    right: -8px;
 }
 
 .student-skirt {
     position: absolute;
-    top: 80px;
-    left: 13px;
-    width: 58px;
-    height: 30px;
+    top: 96px;
+    left: 14px;
+    width: 60px;
+    height: 32px;
     background: var(--skirt);
     clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%);
 }
 
 .student-legs {
     position: absolute;
-    top: 108px;
-    left: 24px;
-    width: 34px;
-    height: 24px;
+    top: 124px;
+    left: 26px;
+    width: 32px;
+    height: 22px;
     background: transparent;
-    box-shadow: 0 0 0 0 #c39d79, 18px 0 0 0 #c39d79;
+    box-shadow: 0 0 0 0 #c39d79, 17px 0 0 0 #c39d79;
 }
 
 .sleep-mark,
 .shy-mark {
     position: absolute;
     color: var(--ink);
-    font-size: 0.7rem;
+    font-size: 0.65rem;
 }
 
 .sleep-mark {
-    top: 2px;
-    left: 58px;
+    top: 8px;
+    left: 62px;
 }
 
 .shy-mark {
-    top: 14px;
-    right: 2px;
+    top: 16px;
+    right: -2px;
+}
+
+.student-sleepy {
+    transition: transform 0.18s ease;
+}
+
+.student-sleepy.awake {
+    transform: translateY(-4px) rotate(0deg);
+}
+
+.student-sleepy.awake .sleep-mark {
+    opacity: 0;
+}
+
+.student-sleepy.awake .sleepy-face {
+    transform: rotate(0deg);
+}
+
+.student-sleepy.awake .sleepy-face::before,
+.student-sleepy.awake .sleepy-face::after {
+    top: 11px;
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+}
+
+.sleep-mark {
+    transition: opacity 0.18s ease;
 }
 
 .flowers {
@@ -597,11 +683,11 @@ footer {
     }
 
     .student-sleepy {
-        left: 2px;
+        left: 0;
     }
 
     .student-shy {
-        right: 2px;
+        right: 0;
     }
 
     .speech-bubble {
@@ -612,46 +698,4 @@ footer {
     .quote-section {
         font-size: 1rem;
     }
-}
-
-.student-sleepy {
-    transition: transform 0.18s ease;
-}
-
-.student-sleepy.awake {
-    transform: translateY(-4px) rotate(0deg);
-}
-
-.student-sleepy.awake .sleep-mark {
-    opacity: 0;
-}
-
-.student-sleepy.awake .sleepy-face {
-    transform: rotate(0deg);
-}
-
-.student-sleepy.awake .sleepy-face::before,
-.student-sleepy.awake .sleepy-face::after {
-    height: 4px;
-}
-
-.student-sleepy.awake .sleepy-face::before {
-    top: 8px;
-}
-
-.student-sleepy.awake .sleepy-face::after {
-    top: 8px;
-}
-
-.student-sleepy.awake .sleepy-face {
-    box-shadow: inset 0 -6px 0 0 rgba(255, 255, 255, 0.08);
-}
-
-.student-sleepy.awake .student-face::after,
-.student-sleepy.awake .student-face::before {
-    background: var(--ink);
-}
-
-.sleep-mark {
-    transition: opacity 0.18s ease;
 }
