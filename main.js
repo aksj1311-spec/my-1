@@ -1,3 +1,5 @@
+const snackMessage = "간단한 간식 오후 3시 50분 홍승혁샘이 챙겨주실겁니다.";
+
 const messages = [
     "{vocative}, 오늘 좀 지각자가 많네요. 마음을 깨끗이.^^ ♥",
     "{vocative}, 우리들도 사계절이란다. 지금 이 시간을 묵묵히 공부하고 기도하며 충실히 머문다면, 저 꽃들처럼 활짝 피어날 날이 꼭 올 거야~~~♡♡♡",
@@ -16,7 +18,7 @@ const messages = [
     "일본에서 만난 인연들, 추억들, 배움들이 앞으로 삶에 도움이 되기를 소망합니다.",
     "선배님들이 해준 조언들 잘 적용해서 좋은 열매 맺기를~~~ 담임 선생님들과 상담하며 내용도 공유하시고 더 발전하기를~~~",
     "오늘 하루 화이팅입니다. 오늘 수녀님도 병원 치료, 수녀원 행사로 함께 하지 못하지만 수녀님도 여러분 생각하며 힘 냅니다.",
-    "간단한 간식 오후 3시 50분 홍승혁샘이 챙겨주실겁니다.",
+    snackMessage,
     "바오로반을 위한 국영수 특별 수업이 필요한가요? 개인적으로 이 부분에 대해 수녀님에게 자신의 생각을 알려주십시요.",
     "수능 전까지 실전처럼 하루를 시험보겠다는 학생들이 있어서, 매주 토요일 4층 물리실은 시험 희망 학생들이 시간에 맞추어 시험을 보는 공간으로 사용합니다. 자습하는 학생들은 바오로교실을 사용하겠습니다."
 ];
@@ -48,7 +50,7 @@ function makeVocative(rawName) {
 }
 
 function refillQueue() {
-    messageQueue = [...messages];
+    messageQueue = [...messages, snackMessage];
     for (let i = messageQueue.length - 1; i > 0; i -= 1) {
         const j = Math.floor(Math.random() * (i + 1));
         [messageQueue[i], messageQueue[j]] = [messageQueue[j], messageQueue[i]];
