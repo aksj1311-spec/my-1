@@ -1,1 +1,141 @@
-/* Add styles here */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f0f0f0; /* 그레이 톤 배경 */
+    color: #333333;
+    font-family: 'DungGeunMo', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    background: #ffffff;
+    padding: 40px 20px;
+    border: 4px solid #333333;
+    box-shadow: 
+        8px 8px 0px 0px #b3b3b3,
+        -8px -8px 0px 0px #ffffff;
+    position: relative;
+}
+
+/* 픽셀 텍스트 스타일 */
+.pixel-text {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* 픽셀 박스 스타일 (공통) */
+.pixel-box {
+    border: 4px solid #333333;
+    background: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    text-align: left;
+}
+
+.input-section label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+input[type="text"] {
+    width: 100%;
+    border: 4px solid #b3b3b3;
+    padding: 10px;
+    font-family: 'DungGeunMo', monospace;
+    font-size: 1rem;
+    outline: none;
+    background: #fff;
+}
+
+input[type="text"]:focus {
+    border-color: #333333;
+}
+
+/* 픽셀 버튼 스타일 */
+.pixel-button {
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    padding: 15px 30px;
+    font-family: 'DungGeunMo', monospace;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: 4px 4px 0px #888888;
+    transition: all 0.1s ease;
+}
+
+.pixel-button:active {
+    box-shadow: 0px 0px 0px #888888;
+    transform: translate(4px, 4px);
+}
+
+.pixel-button:hover {
+    background-color: #444444;
+}
+
+/* 명언 출력 영역 */
+.quote-section {
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.2rem;
+    word-break: keep-all;
+    background: #fff;
+}
+
+#quoteText {
+    transition: opacity 0.3s ease;
+}
+
+footer {
+    margin-top: 30px;
+}
+
+.pixel-text-small {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* 픽셀 보더 유틸리티 (필요 시) */
+.pixel-border {
+    box-shadow: 
+        0 -4px 0 0 #333,
+        0 4px 0 0 #333,
+        -4px 0 0 0 #333,
+        4px 0 0 0 #333;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 30px 15px;
+    }
+    .pixel-text {
+        font-size: 1.5rem;
+    }
+}

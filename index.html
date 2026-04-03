@@ -1,14 +1,37 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>안수녀님 명언봇</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/DungGeunMo.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+    <div class="container">
+        <header>
+            <h1 class="pixel-text">안수녀님 명언봇</h1>
+            <p class="subtitle">수녀님의 다정한 잔소리 한마디...</p>
+        </header>
+
+        <main>
+            <div class="input-section pixel-box">
+                <label for="nameInput" class="pixel-text">이름이 뭐니?</label>
+                <input type="text" id="nameInput" placeholder="이름을 알려주렴..." maxlength="10">
+            </div>
+
+            <button id="quoteBtn" class="pixel-button">명언 듣기</button>
+
+            <div id="quoteArea" class="quote-section pixel-box">
+                <p id="quoteText">반가워요! 수녀님을 불러볼까요?</p>
+            </div>
+        </main>
+
+        <footer>
+            <p class="pixel-text-small">© 2026 Sister Ahn Bot. No Gradients. Just Love.</p>
+        </footer>
+    </div>
+
+    <script src="main.js"></script>
 </body>
 </html>
