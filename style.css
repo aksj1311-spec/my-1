@@ -1,12 +1,8 @@
 :root {
     --ink: #2d241b;
     --paper: #fffaf0;
-    --paper-dark: #f4e4c1;
     --sky-top: #bfe7ff;
     --sky-bottom: #f8fdff;
-    --grass-1: #6ea84f;
-    --grass-2: #8dcf63;
-    --grass-3: #4f7c35;
     --accent: #f28c6b;
     --accent-dark: #cf6b4a;
     --shadow: #b7a27d;
@@ -42,16 +38,14 @@ body {
     box-shadow: 8px 8px 0 var(--shadow);
 }
 
+header {
+    margin-bottom: 10px;
+}
+
 .pixel-text {
     font-size: 1.85rem;
     letter-spacing: 1px;
     margin-bottom: 8px;
-}
-
-.subtitle {
-    margin-bottom: 22px;
-    font-size: 0.95rem;
-    color: #69553f;
 }
 
 .pixel-box {
@@ -72,6 +66,7 @@ body {
 }
 
 .scene {
+    margin-bottom: 18px;
     overflow: hidden;
     padding: 14px 14px 18px;
     background: linear-gradient(180deg, #d7f0ff 0%, #f8fdff 48%, #98d56d 48%, #6eaa48 100%);
@@ -390,11 +385,16 @@ footer {
         padding: 22px 14px 18px;
     }
 
+    header {
+        margin-bottom: 10px;
+    }
+
     .pixel-text {
         font-size: 1.5rem;
     }
 
     .scene {
+        margin-bottom: 18px;
         padding-left: 10px;
         padding-right: 10px;
     }
