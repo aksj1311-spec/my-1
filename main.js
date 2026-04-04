@@ -107,3 +107,133 @@ nameInput.addEventListener('keypress', (e) => {
         getRandomQuote();
     }
 });
+
+/**
+ * Comment Section Component
+ */
+class CommentSection {
+    constructor(containerId) {
+        this.container = document.getElementById(containerId);
+        this.comments = this.loadComments();
+        this.render();
+    }
+
+    loadComments() {
+        const saved = localStorage.getItem('nun_comments');
+        return saved ? JSON.parse(saved) : [];
+    }
+
+    saveComments() {
+        localStorage.setItem('nun_comments', JSON.stringify(this.comments));
+    }
+
+    addComment(text) {
+        if (!text.trim()) return;
+        const newComment = {
+            id: Date.now(),
+            text: text.trim(),
+            date: new Date().toISOString()
+        };
+        this.comments.unshift(newComment);
+        this.saveComments();
+        this.render();
+    }
+
+    deleteComment(id) {
+        this.comments = this.comments.filter(c => c.id !== id);
+        this.saveComments();
+        this.render();
+    }
+
+    updateComment(id, newText) {
+        if (!newText.trim()) return;
+        const comment = this.comments.find(c => c.id === id);
+        if (comment) {
+            comment.text = newText.trim();
+            this.saveComments();
+            this.render();
+        }
+    }
+
+    render() {
+        this.container.innerHTML = `
+            <div class="comment-input-wrapper">
+                <input type="text" class="comment-input" id="newCommentInput" placeholder="원하는 명언을 적어주렴..." maxlength="100">
+                <button id="postCommentBtn" class="pixel-button comment-post-btn">등록</button>
+            </div>
+            <div class="comment-list">
+                ${this.comments.map(c => `
+                    <div class="comment-item" data-id="${c.id}">
+                        <div class="comment-content" id="content-${c.id}">${this.escapeHtml(c.text)}</div>
+                        <div class="comment-actions">
+                            <button class="comment-btn edit" onclick="commentSection.showEditForm(${c.id})">수정</button>
+                            <button class="comment-btn delete" onclick="commentSection.deleteComment(${c.id})">삭제</button>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+
+        // Event Listeners
+        const postBtn = this.container.querySelector('#postCommentBtn');
+        const input = this.container.querySelector('#newCommentInput');
+
+        if (postBtn && input) {
+            postBtn.onclick = () => {
+                this.addComment(input.value);
+                input.value = '';
+            };
+
+            input.onkeypress = (e) => {
+                if (e.key === 'Enter') {
+                    this.addComment(input.value);
+                    input.value = '';
+                }
+            };
+        }
+    }
+
+    showEditForm(id) {
+        const comment = this.comments.find(c => c.id === id);
+        const contentDiv = document.getElementById(`content-${id}`);
+        const itemDiv = contentDiv.closest('.comment-item');
+        const actionsDiv = itemDiv.querySelector('.comment-actions');
+
+        contentDiv.innerHTML = `
+            <div class="edit-mode-container">
+                <input type="text" class="edit-mode-input" id="editInput-${id}" value="${this.escapeHtml(comment.text)}">
+            </div>
+        `;
+
+        actionsDiv.innerHTML = `
+            <button class="comment-btn" onclick="commentSection.handleUpdate(${id})">저장</button>
+            <button class="comment-btn" onclick="commentSection.render()">취소</button>
+        `;
+
+        const editInput = document.getElementById(`editInput-${id}`);
+        if (editInput) {
+            editInput.focus();
+            editInput.onkeypress = (e) => {
+                if (e.key === 'Enter') {
+                    this.handleUpdate(id);
+                }
+            };
+        }
+    }
+
+    handleUpdate(id) {
+        const editInput = document.getElementById(`editInput-${id}`);
+        if (editInput) {
+            this.updateComment(id, editInput.value);
+        }
+    }
+
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+}
+
+// Initialize Comment Section
+window.commentSection = new CommentSection('commentContainer');
