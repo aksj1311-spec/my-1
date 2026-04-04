@@ -25,7 +25,6 @@ const messages = [
 
 const nameInput = document.getElementById('nameInput');
 const quoteBtn = document.getElementById('quoteBtn');
-const quoteText = document.getElementById('quoteText');
 const bubbleText = document.getElementById('bubbleText');
 const sleepyStudent = document.querySelector('.student-sleepy');
 
@@ -95,7 +94,6 @@ function wakeSleepyStudent() {
 
 function getRandomQuote() {
     const selectedMessage = pickMessage();
-    updateText(quoteText, selectedMessage);
     updateText(bubbleText, selectedMessage);
     wakeSleepyStudent();
 }
