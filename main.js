@@ -27,6 +27,7 @@ const nameInput = document.getElementById('nameInput');
 const quoteBtn = document.getElementById('quoteBtn');
 const bubbleText = document.getElementById('bubbleText');
 const sleepyStudent = document.querySelector('.student-sleepy');
+const COMMENT_STORAGE_KEY = 'nun_comments';
 
 let messageQueue = [];
 let sleepyTimeoutId;
@@ -117,12 +118,26 @@ class CommentSection {
     }
 
     loadComments() {
-        const saved = localStorage.getItem('nun_comments');
-        return saved ? JSON.parse(saved) : [];
+        try {
+            const saved = localStorage.getItem(COMMENT_STORAGE_KEY);
+            if (!saved) {
+                return [];
+            }
+
+            const parsed = JSON.parse(saved);
+            return Array.isArray(parsed) ? parsed : [];
+        } catch (error) {
+            console.error('댓글을 불러오지 못했습니다.', error);
+            return [];
+        }
     }
 
     saveComments() {
-        localStorage.setItem('nun_comments', JSON.stringify(this.comments));
+        try {
+            localStorage.setItem(COMMENT_STORAGE_KEY, JSON.stringify(this.comments));
+        } catch (error) {
+            console.error('댓글을 저장하지 못했습니다.', error);
+        }
     }
 
     addComment(text) {
